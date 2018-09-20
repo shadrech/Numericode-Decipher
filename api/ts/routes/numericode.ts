@@ -4,7 +4,7 @@ const router = express.Router();
 import { numericodeController } from "../controllers";
 
 router.route("/numericode")
-  .get(numericodeController.getNumericCode)
-  .post(numericodeController.decipherCode);
+  .get(numericodeController.getNumericode)
+  .post(numericodeController.handleNumericodeInput);
 
 export default router;

@@ -18,6 +18,10 @@ export function decipherCode(code: string): string {
   }, "");
 }
 
-export async function persistNumericCode(code: string): Promise<void> {
+export async function persistNumericode(code: string): Promise<void> {
   // persist to redis db
+}
+
+export async function getNumericode(): Promise<string> {
+  // get from redis
 }
