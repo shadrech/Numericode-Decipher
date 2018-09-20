@@ -1,3 +1,8 @@
+import * as constants from "./constants";
+export {
+  constants
+}
+
 export const numToLetterMapper = (num: number): string => {
   switch (num) {
     case 1:

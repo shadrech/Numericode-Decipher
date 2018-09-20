@@ -1,0 +1,1 @@
+export const NUMERICODE_DB_KEY: string = "NUMERICODE_DB_KEY";

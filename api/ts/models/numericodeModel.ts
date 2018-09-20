@@ -1,5 +1,5 @@
-import * as redis from "redis";
-import { numToLetterMapper } from "../utils";
+import { redisClient } from "../db";
+import { numToLetterMapper, constants } from "../utils";
 
 export function decipherCode(code: string): string {
   return code.split(" ").reduce((acc: string, code: string) => {
@@ -18,10 +18,13 @@ export function decipherCode(code: string): string {
   }, "");
 }
 
-export async function persistNumericode(code: string): Promise<void> {
+export function persistNumericode(code: string): void {
   // persist to redis db
+  redisClient.set(constants.NUMERICODE_DB_KEY, code);
 }
 
 export async function getNumericode(): Promise<string> {
   // get from redis
+  const code = await redisClient.getAsync(constants.NUMERICODE_DB_KEY);
+  return code;
 }
