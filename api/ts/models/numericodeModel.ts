@@ -28,9 +28,9 @@ export function decipherCode(code: string): string {
   }, "");
 }
 
-export function persistNumericode(code: string): void {
+export function persistNumericode(code: string, callback = () => null): void {
   // persist to redis db
-  redisClient.set(constants.NUMERICODE_DB_KEY, code);
+  redisClient.set(constants.NUMERICODE_DB_KEY, code, callback);
 }
 
 export async function getNumericode(): Promise<string> {

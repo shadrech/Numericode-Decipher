@@ -9,7 +9,8 @@
     "start:watch": "node_modules/.bin/nodemon js/index.js",
     "build": "node_modules/.bin/rimraf js/ && tsc",
     "build:watch": "tsc --watch",
-    "prestart": "node_modules/.bin/rimraf js/ && yarn build"
+    "prestart": "node_modules/.bin/rimraf js/ && yarn build",
+    "test": "NUMERICODE_DB_KEY=NUMERICODE_DB_KEY_TEST jest"
   },
   "dependencies": {
     "bluebird": "^3.5.2",

@@ -1,1 +1,1 @@
-export const NUMERICODE_DB_KEY: string = "NUMERICODE_DB_KEY";
+export const NUMERICODE_DB_KEY: string = process.env.NUMERICODE_DB_KEY || "NUMERICODE_DB_KEY";
