@@ -56,3 +56,5 @@ function reducer(state: State = INITIAL_STATE, action: Action) {
       return INITIAL_STATE;
   }
 }
+
+export default reducer;

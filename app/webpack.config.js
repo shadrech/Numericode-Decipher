@@ -1,4 +1,6 @@
 const webpack = require("webpack");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const resolve = require("path").resolve;
 
 module.exports = {
   entry: "./ts/index.tsx",
@@ -20,15 +22,19 @@ module.exports = {
       loader: "source-map-loader"
     }]
   },
-  externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
-  },
   plugins: [
     new webpack.DefinePlugin({
       "process.env": {
         API_URL: JSON.stringify(process.env.API_URL)
       }
+    }),
+    new HTMLWebpackPlugin({
+      hash: true,
+      filename: "index.html",
+      template: resolve(__dirname, "./ts", "index.tpl.html")
     })
-  ]
+  ],
+  devServer: {
+    port: 3000
+  }
 }
