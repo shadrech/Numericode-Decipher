@@ -1,0 +1,32 @@
+{
+  "name": "numericode_app",
+  "version": "1.0.0",
+  "description": "Numericode message decoder",
+  "main": "index.js",
+  "author": "Tatenda Chawanzwa <info@tatendachawanzwa.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/redux": "^3.6.0",
+    "@types/redux-saga": "^0.10.5",
+    "@types/styled-components": "^3.0.1",
+    "@types/webpack": "^4.4.12",
+    "awesome-typescript-loader": "^5.2.1",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.0.3",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8"
+  },
+  "dependencies": {
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
+    "core-js": "^2.5.7",
+    "immutable-assign": "^2.0.9",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux-typescript": "^3.0.0-rc.3",
+    "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
+    "styled-components": "^3.4.9"
+  }
+}
