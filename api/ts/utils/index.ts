@@ -58,6 +58,6 @@ export const numToLetterMapper = (num: number): string => {
     case 26:
       return "Z";
     default:
-      throw new Error("Number required to map to letter");
+      throw new Error("Number between 1 and 26 required to map to letter");
   }
 }

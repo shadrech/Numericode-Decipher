@@ -4,12 +4,16 @@ import { numToLetterMapper, constants } from "../utils";
 export function decipherCode(code: string): string {
   return code.split(" ").reduce((acc: string, code: string) => {
     const num = Number(code);
-
+    
     if (isNaN(num))
       throw new Error("Numericode code must be numeric 🙄");
 
-    if (num % 27 !== 0) {
-      acc += " ";
+    if (num >= 27) {
+      if (num % 27 !== 0) {
+        acc += " ";
+      } else {
+        acc += numToLetterMapper(num / 27);
+      }
     } else {
       acc += numToLetterMapper(num);
     }
