@@ -1,5 +1,5 @@
 import { redisClient } from "../../db";
-import { decipherCode } from '../numericodeModel';
+import { decipherCode, divisibleBy27Root } from '../numericodeModel';
 
 interface Message {
   encoded: string;
@@ -14,24 +14,54 @@ const messages: Message[] = [
     decoded: "M ZE"
   }, {
     encoded: "432 21 19 5832 5 135 14 6561 59049 15 486 275562",
-    decoded: ""
+    decoded: "PUSHEENICORN"
   }, {
     encoded: "20 486 21 513 19 324 5 21924 540 135 3 8",
-    decoded: ""
+    decoded: "TRUSSLE TECH"
   }, {
     encoded: "8 5 324 8748 295245 730 23 405 13122 12 108",
-    decoded: ""
+    decoded: "HELLO WORLD"
   },
 ]
 
+afterAll(function() {
+  redisClient.quit();
+});
+
 describe("NUMERICODE MODEL", function() {
-  afterAll(function() {
-    redisClient.quit();
+  describe("divisibleBy27Root", function() {
+    it("must return 14 if 275562 is passed in", function() {
+      expect(divisibleBy27Root(275562)).toEqual(14);
+    })
   });
-  
+
   describe("decipherCode", function() {
-    const { encoded, decoded } = messages[0];
-    it(`must decipher ${encoded} to ${decoded}`, function() {
+    let { encoded, decoded } = messages[0];
+    it(`must decipher '${encoded}' to ${decoded}`, function() {
+      expect(decipherCode(encoded)).toEqual(decoded);
+    });
+
+    decoded = messages[1].decoded;
+    encoded = messages[1].encoded;
+    it(`must decipher '${encoded}' to ${decoded}`, function() {
+      expect(decipherCode(encoded)).toEqual(decoded);
+    });
+
+    decoded = messages[2].decoded;
+    encoded = messages[2].encoded;
+    it(`must decipher '${encoded}' to ${decoded}`, function() {
+      expect(decipherCode(encoded)).toEqual(decoded);
+    });
+
+    decoded = messages[3].decoded;
+    encoded = messages[3].encoded;
+    it(`must decipher '${encoded}' to ${decoded}`, function() {
+      expect(decipherCode(encoded)).toEqual(decoded);
+    });
+
+    decoded = messages[4].decoded;
+    encoded = messages[4].encoded;
+    it(`must decipher '${encoded}' to ${decoded}`, function() {
       expect(decipherCode(encoded)).toEqual(decoded);
     });
   })
