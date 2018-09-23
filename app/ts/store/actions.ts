@@ -1,14 +1,14 @@
-import { NUMERICODE_INPUT, DECODED_NUMERICODE, DECODING_ERROR } from "./action-types";
+import { NUMERICODE_INPUT, NUMERICODE_UPDATE, DECODED_NUMERICODE, DECODING_ERROR } from "./action-types";
 
 export interface Actions {
-  handleNumericodeInput: (code: string) => void;
   decodedResult: (text: string) => void;
   errorDecoding: (message: string) => void;
+  updateNumericode: (code: string) => void;
 }
 
 const actionCreators = {
-  handleNumericodeInput: (code: string) => ({
-    type: NUMERICODE_INPUT,
+  updateNumericode: (code: string) => ({
+    type: NUMERICODE_UPDATE,
     payload: { code }
   }),
   decodedResult: (text: string) => ({

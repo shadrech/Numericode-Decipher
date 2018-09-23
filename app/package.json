@@ -6,8 +6,8 @@
   "author": "Tatenda Chawanzwa <info@tatendachawanzwa.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node_modules/.bin/webpack-dev-server --open --mode development --color",
-    "build": "node_modules/.bin/webpack --mode production"
+    "start": "API_URL=http://localhost:8080 node_modules/.bin/webpack-dev-server --mode development --color",
+    "build": "API_URL=http://localhost:8080 node_modules/.bin/webpack --mode production"
   },
   "devDependencies": {
     "@types/react-redux": "^6.0.9",
@@ -33,7 +33,9 @@
     "react-redux": "^5.0.7",
     "react-redux-typescript": "^3.0.0-rc.3",
     "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
     "redux-saga": "^0.16.0",
-    "styled-components": "^3.4.9"
+    "styled-components": "^3.4.9",
+    "url-loader": "^1.1.1"
   }
 }

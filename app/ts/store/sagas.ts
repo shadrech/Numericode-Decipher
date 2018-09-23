@@ -1,13 +1,14 @@
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 
-import { NUMERICODE_INPUT } from "./action-types";
+import { NUMERICODE_UPDATE } from "./action-types";
 import actionCreators from './actions';
 import * as api from "./api";
 // import { Action } from "./reducer";
 
-function* decipherCode(action: any) {
+function* decipherCode(action: any /*Action*/) {
+  const { code } = action.payload;
   try {
-    const text: string = yield call(api.decipherCode, action.payload.code);
+    const text: string = yield call(api.decipherCode, code);
     yield put(actionCreators.decodedResult(text));
   } catch (error) {
     console.error("ERROR DECODING", error);
@@ -16,7 +17,7 @@ function* decipherCode(action: any) {
 }
 
 function* mySaga() {
-  yield takeEvery(NUMERICODE_INPUT, decipherCode);
+  yield takeLatest(NUMERICODE_UPDATE, decipherCode);
 }
 
 export default mySaga;

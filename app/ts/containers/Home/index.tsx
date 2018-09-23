@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import actionCreators, { Actions } from "../../store/actions";
 import { State } from "../../store/reducer";
-import { HomeWrapper } from "./styles";
+import { HomeWrapper, ErrorWrapper } from "./styles";
 import DecodedDisplay from "../../components/DecodedDisplay";
 import NumericodeInput from "../../components/NumericodeInput";
 
@@ -18,8 +18,11 @@ const Home: React.SFC<Props>  = (props: Props) => (
     />
     <NumericodeInput
       numericode={props.numericode}
-      handleNumericodeInput={props.handleNumericodeInput}
+      updateNumericode={props.updateNumericode}
+      errorDecoding={props.errorDecoding}
+      isLoading={props.isLoading}
     />
+    <ErrorWrapper>{props.error}</ErrorWrapper>
   </HomeWrapper>
 );
 
@@ -32,7 +35,7 @@ const mapStateToProps = (s: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) =>
   bindActionCreators({
-    handleNumericodeInput: actionCreators.handleNumericodeInput,
+    updateNumericode: actionCreators.updateNumericode,
     decodedResult: actionCreators.decodedResult,
     errorDecoding: actionCreators.errorDecoding,
   }, dispatch);

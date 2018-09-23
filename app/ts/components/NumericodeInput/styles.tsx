@@ -4,9 +4,12 @@ export const Input = styled.input`
   height: 100%;
   width: 100%;
   border-radius: 0;
-  border-color: lightgray;
   font-size: 2rem;
   font-family: "Arial Georgia";
+  color: lightgray;
+  padding-left: 0.5rem;
+  padding-right: 3rem;
+  box-sizing: border-box;
 `;
 
 export const IconWrapper = styled.div`
@@ -27,4 +30,12 @@ export const Wrapper = styled.div`
   max-width: 30rem;
   height: 4rem;
   position: relative;
+`;
+
+export const LoaderWrapper = styled.img`
+  width: 1rem;
+  height: 1rem;
+  position: absolute;
+  right: -1.5rem;
+  top: 1.5rem;
 `;

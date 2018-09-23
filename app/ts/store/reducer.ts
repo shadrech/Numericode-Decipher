@@ -2,7 +2,7 @@ import iassign = require("immutable-assign");
 import { returntypeof } from "react-redux-typescript";
 
 import actionCreators from './actions';
-import { NUMERICODE_INPUT, DECODED_NUMERICODE, DECODING_ERROR } from './action-types';
+import { NUMERICODE_UPDATE, DECODED_NUMERICODE, DECODING_ERROR } from './action-types';
 
 export const actions = Object.values(actionCreators).map(returntypeof);
 export type Action = typeof actions[number];
@@ -22,12 +22,13 @@ const INITIAL_STATE: State = {
 
 function reducer(state: State = INITIAL_STATE, action: Action) {
   switch (action.type) {
-    case NUMERICODE_INPUT: {
+    case NUMERICODE_UPDATE: {
       return iassign(
         state,
         s => {
           s.isLoading = true;
           s.numericode = action.payload.code;
+          s.error = null;
           return s;
         }
       );
@@ -38,6 +39,7 @@ function reducer(state: State = INITIAL_STATE, action: Action) {
         s => {
           s.isLoading = false;
           s.decoded = action.payload.text;
+          s.error = null;
           return s;
         }
       );

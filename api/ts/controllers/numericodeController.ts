@@ -12,7 +12,5 @@ export async function handleNumericodeInput(req: express.Request, res: express.R
   const { code } = req.body;
   await numericodeModel.persistNumericode(code);
   const text = numericodeModel.decipherCode(code);
-  res.status(200).json({
-    text
-  });
+  res.status(200).json(text);
 }

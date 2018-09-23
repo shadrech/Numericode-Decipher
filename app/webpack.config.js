@@ -20,6 +20,9 @@ module.exports = {
       enforce: "pre",
       test: /\.js$/,
       loader: "source-map-loader"
+    }, {
+      test: /\.(pdf|jpg|png|gif|svg|ico)$/,
+      loader: "url-loader"
     }]
   },
   plugins: [

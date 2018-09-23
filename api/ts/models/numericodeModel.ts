@@ -7,8 +7,8 @@ export function divisibleBy27Root(num: number) {
   else return divisibleBy27Root(root);
 }
 
-export function decipherCode(code: string): string {
-  return code.split(" ").reduce((acc: string, code: string) => {
+export function decipherCode(codeString: string): string {
+  return codeString.split(" ").reduce((acc: string, code: string) => {
     const num = Number(code);
 
     if (isNaN(num))
