@@ -10,21 +10,30 @@ import NumericodeInput from "../../components/NumericodeInput";
 
 type Props = Actions & State;
 
-const Home: React.SFC<Props>  = (props: Props) => (
-  <HomeWrapper>
-    <DecodedDisplay
-      decoded={props.decoded}
-      error={props.error}
-    />
-    <NumericodeInput
-      numericode={props.numericode}
-      updateNumericode={props.updateNumericode}
-      errorDecoding={props.errorDecoding}
-      isLoading={props.isLoading}
-    />
-    <ErrorWrapper>{props.error}</ErrorWrapper>
-  </HomeWrapper>
-);
+class Home extends React.Component<Props, {}> {
+  componentDidMount() {
+    this.props.fetchNumericode();
+  }
+
+  render() {
+    const { decoded, error, numericode, handleInputChange, errorDecoding, isLoading } = this.props;
+    return (
+      <HomeWrapper>
+        <DecodedDisplay
+          decoded={decoded}
+          error={error}
+        />
+        <NumericodeInput
+          numericode={numericode}
+          handleInputChange={handleInputChange}
+          errorDecoding={errorDecoding}
+          isLoading={isLoading}
+        />
+        <ErrorWrapper>{error}</ErrorWrapper>
+      </HomeWrapper>
+    )
+  }
+}
 
 const mapStateToProps = (s: State) => ({
   numericode: s.numericode,
@@ -35,9 +44,10 @@ const mapStateToProps = (s: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch<any>) =>
   bindActionCreators({
-    updateNumericode: actionCreators.updateNumericode,
+    handleInputChange: actionCreators.handleInputChange,
     decodedResult: actionCreators.decodedResult,
     errorDecoding: actionCreators.errorDecoding,
+    fetchNumericode: actionCreators.fetchNumericode
   }, dispatch);
 
 export default connect<State, Actions>(mapStateToProps, mapDispatchToProps as any)(Home);

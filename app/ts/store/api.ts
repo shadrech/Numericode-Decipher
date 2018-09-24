@@ -12,6 +12,19 @@ export const decipherCode = async (code: string): Promise<string> => {
       code
     })
   });
-  const text: string = await response.json();
-  return text;
+  const data = await response.json();
+  return data.text;
+}
+
+export const fetchCode = async (): Promise<string> => {
+  const url: string = `${API_URL}/numericode`;
+
+  const response: Response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    }
+  });
+  const data = await response.json();
+  return data.code;
 }

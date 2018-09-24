@@ -6,14 +6,14 @@ import { Actions } from "../../store/actions";
 import { State } from "../../store/reducer";
 const loader = require("../../assets/loader.gif");
 
-type Props = Pick<State, "numericode" | "isLoading"> & Pick<Actions, "updateNumericode" | "errorDecoding">
+type Props = Pick<State, "numericode" | "isLoading"> & Pick<Actions, "handleInputChange" | "errorDecoding">
 
 const NumericodeInput: React.SFC<Props> = (props: Props) => {
   const handleInputChange = (evt: any) => {
     if (/[a-zA-Z-!$%^&*()_+|~=@£\\`{}\[\]:";'<>?,.\/]/.test(evt.target.value)) {
       props.errorDecoding("Numericode must be a number");
     } else {
-      props.updateNumericode(evt.target.value);
+      props.handleInputChange(evt.target.value);
     }
   }
 

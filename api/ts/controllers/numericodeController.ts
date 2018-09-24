@@ -14,7 +14,9 @@ export async function handleNumericodeInput(req: express.Request, res: express.R
   try {
     text = numericodeModel.decipherCode(code);
     await numericodeModel.persistNumericode(code);
-    res.status(200).json(text);
+    res.status(200).json({
+      text
+    });
   } catch (error) {
     next(error);
   }
