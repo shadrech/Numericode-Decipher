@@ -8,9 +8,14 @@ export async function getNumericode(req: express.Request, res: express.Response)
   });
 }
 
-export async function handleNumericodeInput(req: express.Request, res: express.Response): Promise<void> {
+export async function handleNumericodeInput(req: express.Request, res: express.Response, next: express.NextFunction): Promise<void> {
   const { code } = req.body;
-  await numericodeModel.persistNumericode(code);
-  const text = numericodeModel.decipherCode(code);
-  res.status(200).json(text);
+  let text;
+  try {
+    text = numericodeModel.decipherCode(code);
+    await numericodeModel.persistNumericode(code);
+    res.status(200).json(text);
+  } catch (error) {
+    next(error);
+  }
 }

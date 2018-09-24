@@ -1,5 +1,5 @@
 import { redisClient } from "../../db";
-import { decipherCode, divisibleBy27Root, persistNumericode, getNumericode } from '../numericodeModel';
+import { decipherCode, diviseTo27Root, persistNumericode, getNumericode } from '../numericodeModel';
 
 interface Message {
   encoded: string;
@@ -11,7 +11,7 @@ const messages: Message[] = [
     decoded: "HELLO"
   }, {
     encoded: "13 27 26 5",
-    decoded: "M ZE"
+    decoded: "MAZE"
   }, {
     encoded: "432 21 19 5832 5 135 14 6561 59049 15 486 275562",
     decoded: "PUSHEENICORN"
@@ -21,7 +21,10 @@ const messages: Message[] = [
   }, {
     encoded: "8 5 324 8748 295245 730 23 405 13122 12 108",
     decoded: "HELLO WORLD"
-  },
+  }, {
+    encoded: "not alphanuMeric",
+    decoded: ""
+  }
 ]
 
 describe("NUMERICODE MODEL", function() {
@@ -30,40 +33,45 @@ describe("NUMERICODE MODEL", function() {
     redisClient.quit();
   });
   
-  describe("divisibleBy27Root", function() {
+  describe("diviseTo27Root", function() {
     it("must return 14 if 275562 is passed in", function() {
-      expect(divisibleBy27Root(275562)).toEqual(14);
+      expect(diviseTo27Root(275562)).toEqual(14);
     })
   });
 
   describe("decipherCode", function() {
     let { encoded, decoded } = messages[0];
     it(`must decipher '${encoded}' to ${decoded}`, function() {
-      expect(decipherCode(encoded)).toEqual(decoded);
+      expect(decipherCode(encoded)).toBe(decoded);
     });
 
-    decoded = messages[1].decoded;
-    encoded = messages[1].encoded;
-    it(`must decipher '${encoded}' to ${decoded}`, function() {
-      expect(decipherCode(encoded)).toEqual(decoded);
+    const d2 = messages[1].decoded;
+    const e2 = messages[1].encoded;
+    it(`must decipher '${e2}' to ${d2}`, function() {
+      expect(decipherCode(e2)).toBe(d2);
     });
 
-    decoded = messages[2].decoded;
-    encoded = messages[2].encoded;
-    it(`must decipher '${encoded}' to ${decoded}`, function() {
-      expect(decipherCode(encoded)).toEqual(decoded);
+    const d3 = messages[2].decoded;
+    const e3 = messages[2].encoded;
+    it(`must decipher '${e3}' to ${d3}`, function() {
+      expect(decipherCode(e3)).toBe(d3);
     });
 
-    decoded = messages[3].decoded;
-    encoded = messages[3].encoded;
-    it(`must decipher '${encoded}' to ${decoded}`, function() {
-      expect(decipherCode(encoded)).toEqual(decoded);
+    const d4 = messages[3].decoded;
+    const e4 = messages[3].encoded;
+    it(`must decipher '${e4}' to ${d4}`, function() {
+      expect(decipherCode(e4)).toBe(d4);
     });
 
-    decoded = messages[4].decoded;
-    encoded = messages[4].encoded;
-    it(`must decipher '${encoded}' to ${decoded}`, function() {
-      expect(decipherCode(encoded)).toEqual(decoded);
+    const d5 = messages[4].decoded;
+    const e5 = messages[4].encoded;
+    it(`must decipher '${e5}' to ${d5}`, function() {
+      expect(decipherCode(e5)).toBe(d5);
+    });
+
+    const e6 = messages[5].encoded;
+    it(`must throw error if non numbers are passed in`, function() {
+      expect(() => decipherCode(e6)).toThrowError();
     });
   });
 

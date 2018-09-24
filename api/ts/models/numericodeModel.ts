@@ -1,10 +1,10 @@
 import { redisClient } from "../db";
 import { numToLetterMapper, constants } from "../utils";
 
-export function divisibleBy27Root(num: number) {
+export function diviseTo27Root(num: number) {
   const root = num / 27;
   if (root <= 27) return root;
-  else return divisibleBy27Root(root);
+  else return diviseTo27Root(root);
 }
 
 export function decipherCode(codeString: string): string {
@@ -15,10 +15,11 @@ export function decipherCode(codeString: string): string {
       throw new Error("Numericode code must be numeric 🙄");
 
     if (num >= 27) {
-      if (num % 27 !== 0) {
-        acc += " ";
+      const root = diviseTo27Root(num);
+      if (Number.isInteger(root)) {
+        acc += numToLetterMapper(root);
       } else {
-        acc += numToLetterMapper(divisibleBy27Root(num));
+        acc += " ";        
       }
     } else {
       acc += numToLetterMapper(num);
